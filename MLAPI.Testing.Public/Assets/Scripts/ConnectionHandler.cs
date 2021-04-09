@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ConnectionHandler : MonoBehaviour
 {
-    private void Awake()
+    [SerializeField] float approvalDelay = 1f;
+
+    private void Start()
     {
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
         NetworkManager.Singleton.OnClientDisconnectCallback += HandleClientDisconnect;
@@ -24,7 +26,7 @@ public class ConnectionHandler : MonoBehaviour
                                          ulong clientId,
                                          MLAPI.NetworkManager.ConnectionApprovedDelegate callback)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(approvalDelay);
         callback(true, null, true, null, null);
     }
 }
