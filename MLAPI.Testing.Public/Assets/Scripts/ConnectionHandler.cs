@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using MLAPI;
+using Unity.Netcode;
 using UnityEngine;
-
 public class ConnectionHandler : MonoBehaviour
 {
     [SerializeField] float approvalDelay = 1f;
@@ -17,14 +16,14 @@ public class ConnectionHandler : MonoBehaviour
 
     private void ApprovalCheck(byte[] connectionData,
                                ulong clientId,
-                               MLAPI.NetworkManager.ConnectionApprovedDelegate callback)
+                               NetworkManager.ConnectionApprovedDelegate callback)
     {
         StartCoroutine(RunApprovalCheck(connectionData, clientId, callback));
     }
 
     private IEnumerator RunApprovalCheck(byte[] connectionData,
                                          ulong clientId,
-                                         MLAPI.NetworkManager.ConnectionApprovedDelegate callback)
+                                         NetworkManager.ConnectionApprovedDelegate callback)
     {
         yield return new WaitForSeconds(approvalDelay);
         callback(true, null, true, null, null);

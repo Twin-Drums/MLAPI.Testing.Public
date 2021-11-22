@@ -1,36 +1,37 @@
 using System;
-using MLAPI;
-using MLAPI.NetworkVariable;
-
+using Unity.Netcode;
+using UnityEngine;
 public class Connector : NetworkBehaviour
 {
     public event Action<Connector> OnNetworkStart = delegate { };
-    public event Action<float, float> OnValue02Changed = delegate { };
-    public event Action<SerializableItem, SerializableItem> OnValue03Changed = delegate { };
 
+    public event Action<float> OnList01Changed = delegate { };
     public bool NetworkHasStarted { get; private set; }
 
-    public NetworkVariable<float> Value01 = new NetworkVariable<float>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.OwnerOnly });
-    
-    public float Value02 { get => value02.Value; set => value02.Value = value; }
-    private NetworkVariable<float> value02 = new NetworkVariable<float>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.OwnerOnly });
+    public NetworkList<float> Value01;
 
-    public SerializableItem Value03 { get => value03.Value; set => value03.Value = value; }
-    private NetworkVariable<SerializableItem> value03 = new NetworkVariable<SerializableItem>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.OwnerOnly });
 
-    public override void NetworkStart()
+    private void Awake()
     {
-        base.NetworkStart();
-        NetworkHasStarted = true;
-        OnNetworkStart(this);
-        OnNetworkStart = delegate { };
-        Initialize();                
+        Value01 = new NetworkList<float>();
     }
 
-    private void Initialize()
+    public override void OnNetworkSpawn()
     {
-        value02.OnValueChanged += (previous, current) => OnValue02Changed(previous, current);
-        value03.OnValueChanged += (previous, current) => OnValue03Changed(previous, current);
+        base.OnNetworkSpawn();
+        NetworkHasStarted = true;
+        Value01.OnListChanged += OnListChanged;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+        Value01.OnListChanged -= OnListChanged;
+    }
+
+    private void OnListChanged(NetworkListEvent<float> changeevent)
+    {
+        OnList01Changed(changeevent.Value);
     }
 
     public void ExecuteWhenNetworkHasStarted(Action action) => ExecuteWhenNetworkHasStarted((connector) => action());

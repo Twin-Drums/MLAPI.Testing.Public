@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,12 +173,6 @@ MonoBehaviour:
   ConnectAddress: 127.0.0.1
   ConnectPort: 7777
   ServerListenPort: 7777
-  ServerWebsocketListenPort: 8887
-  SupportWebsocket: 0
-  Channels: []
-  UseMLAPIRelay: 0
-  MLAPIRelayAddress: 184.72.104.138
-  MLAPIRelayPort: 8888
   MessageSendMode: 0
 --- !u!114 &77947249
 MonoBehaviour:
@@ -198,43 +192,28 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 77947248}
-    RegisteredScenes:
-    - Server
-    - Client
-    AllowRuntimeSceneChanges: 0
+    PlayerPrefab: {fileID: 6909345762838332097, guid: 7d0ef3436effe4f7ea534f52a1dc01da, type: 3}
     NetworkPrefabs:
-    - Prefab: {fileID: 6909345762838332097, guid: 7d0ef3436effe4f7ea534f52a1dc01da, type: 3}
-      PlayerPrefab: 1
-    PlayerPrefabHash:
-      id: 0
-    CreatePlayerPrefab: 1
-    ReceiveTickrate: 64
-    NetworkTickIntervalSec: 0.05
-    MaxReceiveEventsPerTickRate: 500
-    EventTickrate: 64
+    - Override: 1
+      Prefab: {fileID: 6909345762838332097, guid: 7d0ef3436effe4f7ea534f52a1dc01da, type: 3}
+      SourcePrefabToOverride: {fileID: 6909345762838332097, guid: 3874aedc02a1d4931a49c94d6a7d41e8, type: 3}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 6909345762838332097, guid: 7d0ef3436effe4f7ea534f52a1dc01da, type: 3}
+    TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 1
     ConnectionData: 
     EnableTimeResync: 0
     TimeResyncInterval: 30
-    EnableNetworkVariable: 1
     EnsureNetworkVariableLengthSafety: 0
     EnableSceneManagement: 0
     ForceSamePrefabs: 0
-    UsePrefabSync: 1
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
     LoadSceneTimeOut: 120
-    EnableMessageBuffering: 1
     MessageBufferTimeout: 20
     EnableNetworkLogs: 1
-  references:
-    version: 1
-    00000000:
-      type: {class: NullableBoolSerializable, ns: MLAPI.Configuration, asm: Unity.Multiplayer.MLAPI.Runtime}
-      data:
-        Value: 1897319656204293034
 --- !u!1 &575466106
 GameObject:
   m_ObjectHideFlags: 0
