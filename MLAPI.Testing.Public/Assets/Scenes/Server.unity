@@ -248,7 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d729fa39f245198ada3bf97dc8aea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkVisibilityObject: {fileID: 8206556697748074305, guid: d78579967ce41354796ded325200baa7, type: 3}
+  networkVisibilityObject: {fileID: 8206556697748074311, guid: d78579967ce41354796ded325200baa7, type: 3}
+  Amount: 85
 --- !u!4 &349640733
 Transform:
   m_ObjectHideFlags: 0
