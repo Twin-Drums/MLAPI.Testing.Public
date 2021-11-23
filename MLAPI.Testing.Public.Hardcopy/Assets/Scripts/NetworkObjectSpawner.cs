@@ -6,7 +6,9 @@ namespace Code.Server.Visibility
 {
     public class NetworkObjectSpawner : MonoBehaviour
     {
-        [SerializeField] private NetworkVisibilityObject networkVisibilityObject;
+        [SerializeField] private NetworkObject networkVisibilityObject;
+        [SerializeField] private int Amount;
+
 
         private IEnumerator Start()
         {
@@ -15,7 +17,7 @@ namespace Code.Server.Visibility
                 yield return null;
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < Amount; i++)
             {
                 SpawnNetworkVisibilityObjects();
             }
