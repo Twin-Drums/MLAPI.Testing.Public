@@ -5,9 +5,9 @@ namespace DefaultNamespace
 {
     public struct UnmanagedTestContainer : IEquatable<UnmanagedTestContainer>
     {
-        public FixedString128Bytes Value01;
-        public FixedString128Bytes Value02;
-        public FixedString128Bytes Value03;
+        public FixedString32Bytes Value02;
+        public FixedString32Bytes Value01;
+        public FixedString32Bytes Value03;
 
         public bool Equals(UnmanagedTestContainer other) => Value01.Equals(other.Value01) && Value02.Equals(other.Value02) && Value03.Equals(other.Value03);
         public override bool Equals(object obj) => obj is UnmanagedTestContainer other && Equals(other);
