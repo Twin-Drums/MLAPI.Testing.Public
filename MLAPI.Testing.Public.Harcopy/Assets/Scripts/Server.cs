@@ -3,6 +3,8 @@ using UnityEngine;
 public class Server : MonoBehaviour
 {
     private Connector connector;
+    [SerializeField] private int Amount = 5;
+
 
     private void Awake() => connector = GetComponent<Connector>();
 
@@ -10,7 +12,7 @@ public class Server : MonoBehaviour
 
     private void Initialize()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < Amount; i++)
         {
             AddUnmanagedContainer();
         }
