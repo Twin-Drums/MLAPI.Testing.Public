@@ -1,19 +1,19 @@
 using System;
+using DefaultNamespace;
 using Unity.Netcode;
-using UnityEngine;
 public class Connector : NetworkBehaviour
 {
     public event Action<Connector> OnNetworkStart = delegate { };
 
-    public event Action<float> OnList01Changed = delegate { };
+    public event Action<UnmanagedTestContainer> OnList01Changed = delegate { };
     public bool NetworkHasStarted { get; private set; }
 
-    public NetworkList<float> Value01;
+    public NetworkList<UnmanagedTestContainer> Value01;
 
 
     private void Awake()
     {
-        Value01 = new NetworkList<float>();
+        Value01 = new NetworkList<UnmanagedTestContainer>();
     }
 
     public override void OnNetworkSpawn()
@@ -29,7 +29,7 @@ public class Connector : NetworkBehaviour
         Value01.OnListChanged -= OnListChanged;
     }
 
-    private void OnListChanged(NetworkListEvent<float> changeevent)
+    private void OnListChanged(NetworkListEvent<UnmanagedTestContainer> changeevent)
     {
         OnList01Changed(changeevent.Value);
     }

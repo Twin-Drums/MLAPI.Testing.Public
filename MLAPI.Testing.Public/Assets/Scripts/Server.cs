@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 public class Server : MonoBehaviour
 {
@@ -9,10 +10,18 @@ public class Server : MonoBehaviour
 
     private void Initialize()
     {
-        InvokeRepeating($"SlowAdder", 1f,1f);
+        for (int i = 0; i < 10; i++)
+        {
+            AddUnmanagedContainer();
+        }
     }
-    private void SlowAdder()
+    private void AddUnmanagedContainer()
     {
-        connector.Value01.Add(Random.Range(0,100));
+        connector.Value01.Add(new UnmanagedTestContainer
+        {
+            Value01 = Random.Range(0,100).ToString(),
+            Value02 = Random.Range(0,100).ToString(),
+            Value03 = Random.Range(0,100).ToString()
+        });
     }
 }
