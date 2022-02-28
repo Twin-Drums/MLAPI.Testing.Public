@@ -68,6 +68,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.netcode.adapter.utp": {
+      "version": "file:C:/repositories/com.unity.netcode.gameobjects/com.unity.netcode.adapter.utp",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.netcode.gameobjects": "1.0.0-pre.5",
+        "com.unity.transport": "1.0.0-pre.13"
+      }
+    },
     "com.unity.netcode.gameobjects": {
       "version": "file:C:/repositories/com.unity.netcode.gameobjects/com.unity.netcode.gameobjects",
       "depth": 0,
