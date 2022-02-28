@@ -203,16 +203,21 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 6909345762838332097, guid: 3874aedc02a1d4931a49c94d6a7d41e8, type: 3}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 6909345762838332097, guid: 7d0ef3436effe4f7ea534f52a1dc01da, type: 3}
+    - Override: 1
+      Prefab: {fileID: 0}
+      SourcePrefabToOverride: {fileID: 8206556697748074308, guid: d78579967ce41354796ded325200baa7, type: 3}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 4882070125828289943, guid: 66055320ecee0ce4fa6777f8dd938f3c, type: 3}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 1
+    ConnectionApproval: 0
     ConnectionData: 
     EnableTimeResync: 0
     TimeResyncInterval: 30
-    EnsureNetworkVariableLengthSafety: 0
+    EnsureNetworkVariableLengthSafety: 1
     EnableSceneManagement: 0
     ForceSamePrefabs: 0
-    RecycleNetworkIds: 1
+    RecycleNetworkIds: 0
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
     LoadSceneTimeOut: 120
@@ -244,7 +249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 575466106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efb23fe9b12a145dd91415b89b2d2031, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aaa9d4565c64d508ac9e542e9e99bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   networkingType: 0
