@@ -6,13 +6,9 @@ namespace Code.Server.Visibility
     [RequireComponent(typeof(NetworkObject))]
     public class NetworkVisibilityObject : NetworkBehaviour
     {
-
         private NetworkObject networkedObject;
 
-        private void Awake()
-        {
-            networkedObject = GetComponent<NetworkObject>();
-        }
+        private void Awake() { networkedObject = GetComponent<NetworkObject>(); }
 
         public override void OnNetworkSpawn()
         {
@@ -27,7 +23,8 @@ namespace Code.Server.Visibility
         }
 
 
-        protected virtual bool HandleCheckObjectVisibility(ulong clientId) => false;
-
+        protected virtual bool HandleCheckObjectVisibility(ulong clientId) {
+            Debug.Log($"[{nameof(NetworkVisibilityObject)}::{nameof(HandleCheckObjectVisibility)}] Random.Range(0f, 1f)");
+            return Random.Range(0f, 1f) > 0.5f; }
     }
 }

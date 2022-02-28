@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4882070125828289946}
   - component: {fileID: 4882070125828289941}
+  - component: {fileID: 6094941377768359728}
   m_Layer: 0
   m_Name: TestNetworkObjectClient
   m_TagString: Untagged
@@ -47,3 +48,15 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &6094941377768359728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882070125828289943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83efe62f8a8f0564f95654864a08e99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
