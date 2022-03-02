@@ -23,8 +23,6 @@ namespace Code.Server.Visibility
         }
 
 
-        protected virtual bool HandleCheckObjectVisibility(ulong clientId) {
-            Debug.Log($"[{nameof(NetworkVisibilityObject)}::{nameof(HandleCheckObjectVisibility)}] Random.Range(0f, 1f)");
-            return Random.Range(0f, 1f) > 0.5f; }
+        protected virtual bool HandleCheckObjectVisibility(ulong clientId) => Random.Range(0f, 1f) > 0.5f;
     }
 }

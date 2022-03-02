@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 public class Server : MonoBehaviour
@@ -15,7 +16,13 @@ public class Server : MonoBehaviour
         for (int i = 0; i < Amount; i++)
         {
             AddUnmanagedContainer();
-        }
+        } 
+        CustomMessageType test = new CustomMessageType
+        {
+            someString = "Live long and prosper.",
+            someList = new List<int> { 4, 5, 6, 3, 5, 6, 7, 4, 5, 6, 76, 4, 345, 34, 5, 345, 3, 45, 345 }
+        };
+        connector.SendCustomMessage(test);
     }
     private void AddUnmanagedContainer()
     {

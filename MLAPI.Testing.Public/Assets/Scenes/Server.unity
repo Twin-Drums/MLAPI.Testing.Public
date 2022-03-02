@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkVisibilityObject: {fileID: 8206556697748074311, guid: d78579967ce41354796ded325200baa7, type: 3}
-  Amount: 5000
+  Amount: 100
 --- !u!4 &349640733
 Transform:
   m_ObjectHideFlags: 0
