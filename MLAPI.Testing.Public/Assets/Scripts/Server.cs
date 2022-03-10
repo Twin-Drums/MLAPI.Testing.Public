@@ -23,6 +23,20 @@ public class Server : MonoBehaviour
             someList = new List<int> { 4, 5, 6, 3, 5, 6, 7, 4, 5, 6, 76, 4, 345, 34, 5, 345, 3, 45, 345 }
         };
         connector.SendCustomMessage(test);
+
+
+        
+        IdName[] arr = new IdName[10];
+        for (int i = 0; i < arr.Length; i++)
+        {
+            arr[i] = new IdName
+            {
+                Id = i,
+                Name = "test.id." + i
+            };
+        }
+
+        connector.SendPayloadWithArray(arr);
     }
     private void AddUnmanagedContainer()
     {
