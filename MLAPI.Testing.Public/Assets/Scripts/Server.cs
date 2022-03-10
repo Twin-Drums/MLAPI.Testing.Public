@@ -4,7 +4,8 @@ using UnityEngine;
 public class Server : MonoBehaviour
 {
     private Connector connector;
-    [SerializeField] private int Amount = 5;
+    [SerializeField] private int CustomMessageAmount = 5;
+    [SerializeField] private int CustomMessageArrayLength = 5;
 
 
     private void Awake() => connector = GetComponent<Connector>();
@@ -13,7 +14,7 @@ public class Server : MonoBehaviour
 
     private void Initialize()
     {
-        for (int i = 0; i < Amount; i++)
+        for (int i = 0; i < CustomMessageAmount; i++)
         {
             AddUnmanagedContainer();
         } 
@@ -26,7 +27,7 @@ public class Server : MonoBehaviour
 
 
         
-        IdName[] arr = new IdName[10];
+        IdName[] arr = new IdName[CustomMessageArrayLength];
         for (int i = 0; i < arr.Length; i++)
         {
             arr[i] = new IdName

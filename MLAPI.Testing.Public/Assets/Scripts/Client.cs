@@ -10,17 +10,26 @@ public class Client : MonoBehaviour
 
     private void Start() => connector.ExecuteWhenNetworkHasStarted(Initialize);
 
+    private void OnEnable()
+    {
+        connector.OnArrayReceived += HandleArrayReceived;
+    }
+
+    private void OnDisable()
+    {
+        connector.OnArrayReceived -= HandleArrayReceived;
+    }
+
+
     private void Initialize()
     {
         Debug.Log("Value01=" + connector.Value01);
         connector.OnList01Changed += HandleList01Changed;
-        connector.OnArrayReceived += HandleArrayReceived;
     }
 
     private void OnDestroy()
     {
         connector.OnList01Changed -= HandleList01Changed;
-        connector.OnArrayReceived -= HandleArrayReceived;
     }
 
     private void HandleList01Changed(UnmanagedTestContainer obj)
@@ -35,7 +44,7 @@ public class Client : MonoBehaviour
         foreach (T networkSerializable in obj)
         {
             string s = networkSerializable.ToString();
-            Debug.Log($"[{nameof(Connector)}::{nameof(HandleArrayReceived)}] s");
+            Debug.Log($"Array s {s.GetHashCode()}");
         }
     }
 }
