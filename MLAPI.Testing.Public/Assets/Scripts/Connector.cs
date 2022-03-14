@@ -15,9 +15,18 @@ public class Connector : NetworkBehaviour
     public NetworkList<UnmanagedTestContainer> Value01;
     
     public event Action<IdName[]> OnArrayReceived = delegate { };
+    
+    public event Action<int> OnFixedListVariableChanged = delegate {  };
 
+    public FixedList FixedListVariable { get => fixedListVariable.Value; set {  fixedListVariable.Value = value; fixedListVariable.SetDirty(true); } }
+    private NetworkVariable<FixedList> fixedListVariable;
+    
 
-    private void Awake() { Value01 = new NetworkList<UnmanagedTestContainer>(); }
+    private void Awake()
+    {
+        Value01 = new NetworkList<UnmanagedTestContainer>();
+        fixedListVariable = new NetworkVariable<FixedList>();
+    }
 
     string customMessageTestName = "custommessage.test";
     string customMessageArrayTestName = "custommessage.arraytest";
@@ -27,9 +36,12 @@ public class Connector : NetworkBehaviour
         base.OnNetworkSpawn();
         NetworkHasStarted = true;
         Value01.OnListChanged += OnListChanged;
+        fixedListVariable.OnValueChanged += OnFixedListChanged;
         NetworkManager.CustomMessagingManager.RegisterNamedMessageHandler(customMessageTestName, HandleCustomMessageReceived);
         RegisterNamedMessageWithArrayPayload(customMessageArrayTestName, OnArrayReceived);
     }
+
+    private void OnFixedListChanged(FixedList previousvalue, FixedList newvalue) => OnFixedListVariableChanged(newvalue.testList.Length);
 
 
     public override void OnNetworkDespawn()

@@ -1,4 +1,5 @@
 using DefaultNamespace;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,7 +9,10 @@ public class Client : MonoBehaviour
 
     private void Awake() => connector = GetComponent<Connector>();
 
-    private void Start() => connector.ExecuteWhenNetworkHasStarted(Initialize);
+    private void Start()
+    {
+        connector.ExecuteWhenNetworkHasStarted(Initialize);
+    }
 
     private void OnEnable()
     {
@@ -25,11 +29,19 @@ public class Client : MonoBehaviour
     {
         Debug.Log("Value01=" + connector.Value01);
         connector.OnList01Changed += HandleList01Changed;
+        connector.OnFixedListVariableChanged += HandleFixedListChanged;
     }
+
 
     private void OnDestroy()
     {
         connector.OnList01Changed -= HandleList01Changed;
+        connector.OnFixedListVariableChanged -= HandleFixedListChanged;
+    }
+
+    private void HandleFixedListChanged(int obj)
+    {
+        Debug.Log("Fixed list changed:  " + obj);
     }
 
     private void HandleList01Changed(UnmanagedTestContainer obj)

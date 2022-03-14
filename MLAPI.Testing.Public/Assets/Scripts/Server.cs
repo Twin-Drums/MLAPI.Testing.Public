@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DefaultNamespace;
+using Unity.Collections;
 using UnityEngine;
 public class Server : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class Server : MonoBehaviour
 
     private void Awake() => connector = GetComponent<Connector>();
 
-    private void Start() => connector.ExecuteWhenNetworkHasStarted(Initialize);
+    private void Start()
+    {
+        connector.ExecuteWhenNetworkHasStarted(Initialize); 
+        InvokeRepeating($"AddToFixedList", 3f, 3f);
+        
+    }
 
     private void Initialize()
     {
@@ -25,8 +31,6 @@ public class Server : MonoBehaviour
         };
         connector.SendCustomMessage(test);
 
-
-        
         IdName[] arr = new IdName[CustomMessageArrayLength];
         for (int i = 0; i < arr.Length; i++)
         {
@@ -38,6 +42,16 @@ public class Server : MonoBehaviour
         }
 
         connector.SendPayloadWithArray(arr);
+    }
+    
+    public void AddToFixedList()
+    {
+        FixedList512Bytes<int> fixedList512Bytes = connector.FixedListVariable.testList;
+        fixedList512Bytes.Add(5);
+        connector.FixedListVariable = new FixedList
+        {
+            testList = fixedList512Bytes
+        };
     }
     private void AddUnmanagedContainer()
     {
