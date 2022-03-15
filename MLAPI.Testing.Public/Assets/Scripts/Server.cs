@@ -47,10 +47,14 @@ public class Server : MonoBehaviour
     public void AddToFixedList()
     {
         FixedList512Bytes<int> fixedList512Bytes = connector.FixedListVariable.testList;
+        FixedList512Bytes<int> fixedList512Bytes2 = connector.FixedListVariable.testList2;
         fixedList512Bytes.Add(5);
+        fixedList512Bytes2.Add(7);
+        fixedList512Bytes2.Add(2);
         connector.FixedListVariable = new FixedList
         {
-            testList = fixedList512Bytes
+            testList = fixedList512Bytes,
+            testList2 = fixedList512Bytes
         };
     }
     private void AddUnmanagedContainer()

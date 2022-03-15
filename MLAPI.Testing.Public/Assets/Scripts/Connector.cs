@@ -41,7 +41,7 @@ public class Connector : NetworkBehaviour
         RegisterNamedMessageWithArrayPayload(customMessageArrayTestName, OnArrayReceived);
     }
 
-    private void OnFixedListChanged(FixedList previousvalue, FixedList newvalue) => OnFixedListVariableChanged(newvalue.testList.Length);
+    private void OnFixedListChanged(FixedList previousvalue, FixedList newvalue) => OnFixedListVariableChanged(newvalue.testList.Length + newvalue.testList2.Length);
 
 
     public override void OnNetworkDespawn()
