@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using Unity.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class Server : MonoBehaviour
 {
     private Connector connector;
-    [SerializeField] private int CustomMessageAmount = 5;
+    [SerializeField] private int CustomMessageAmount = 20000;
     [SerializeField] private int CustomMessageArrayLength = 5;
 
 
@@ -15,15 +18,13 @@ public class Server : MonoBehaviour
     {
         connector.ExecuteWhenNetworkHasStarted(Initialize); 
         InvokeRepeating($"AddToFixedList", 3f, 3f);
-        
+        InvokeRepeating($"AddUnmanagedContainers", 3f, 3f);
     }
 
     private void Initialize()
     {
-        for (int i = 0; i < CustomMessageAmount; i++)
-        {
-            AddUnmanagedContainer();
-        } 
+        AddUnmanagedContainers(); 
+        
         CustomMessageType test = new CustomMessageType
         {
             someString = "Live long and prosper.",
@@ -43,7 +44,15 @@ public class Server : MonoBehaviour
 
         connector.SendPayloadWithArray(arr);
     }
-    
+
+    private void AddUnmanagedContainers()
+    {
+        for (int i = 0; i < CustomMessageAmount; i++)
+        {
+            AddUnmanagedContainer();
+        }
+    }
+
     public void AddToFixedList()
     {
         FixedList512Bytes<int> fixedList512Bytes = connector.FixedListVariable.testList;
@@ -57,13 +66,14 @@ public class Server : MonoBehaviour
             testList2 = fixedList512Bytes
         };
     }
+
     private void AddUnmanagedContainer()
     {
         connector.Value01.Add(new UnmanagedTestContainer
         {
-            Value01 = Random.Range(0,100).ToString(),
-            Value02 = Random.Range(0,100).ToString(),
-            Value03 = Random.Range(0,100).ToString()
+            Value01 = Random.Range(0,Int32.MaxValue).ToString(),
+            Value02 = Random.Range(0,Int32.MaxValue).ToString(),
+            Value03 = Random.Range(0,Int32.MaxValue).ToString()
         });
     }
 }
